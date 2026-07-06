@@ -76,6 +76,23 @@
             animation: fadeInDown 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
+        /* Bingkai Gambar Utama di Halaman Depan */
+        .hero-image-wrapper {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 35px rgba(201, 160, 84, 0.3);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .logo-sub {
             font-family: var(--font-title);
             font-size: 0.9rem;
@@ -308,6 +325,9 @@
     <div class="stars"></div>
 
     <header id="hero">
+        <div class="hero-image-wrapper">
+            <img src="https://images.unsplash.com/photo-1508849789987-4e5333c12b78?w=400&auto=format&fit=crop&q=80" alt="Hogwarts Castle">
+        </div>
         <div class="logo-sub">Welcome to</div>
         <h1>Hogwarts Institute</h1>
         <p class="subtitle">Upacara seleksi sakral dimulai kembali. Sifat alami, insting, dan keputusan moralmu akan menentukan di menara asrama mana kamu layak ditempatkan.</p>
@@ -568,8 +588,8 @@
                 houseNameEl.style.color = house.color;
                 
                 // Efek Glow Border pada Gambar Sesuai Rumah
-                document.querySelector('.house-image-wrapper').style.borderColor = house.color;
-                document.querySelector('.house-image-wrapper').style.boxShadow = `0 0 40px ${house.color}`;
+                document.querySelector('#result-container .house-image-wrapper').style.borderColor = house.color;
+                document.querySelector('#result-container .house-image-wrapper').style.boxShadow = `0 0 40px ${house.color}`;
 
                 document.getElementById('house-desc').innerText = house.desc;
                 document.body.className = `house-${winningHouse}`;
