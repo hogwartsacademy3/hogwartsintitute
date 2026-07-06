@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dunia Sihir | Pengalaman Interaktif</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <title>Hogwarts Institute | Sorting Ceremony</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,650;1,400&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -14,15 +14,16 @@
         }
 
         :root {
-            --bg-color: #050508;
-            --text-main: #e0e0e0;
-            --gold: #d4af37;
+            --bg-color: #030307;
+            --text-main: #e2e8f0;
+            --gold: #c9a054;
+            --gold-light: #f3e5ab;
             --font-title: 'Cinzel', serif;
             --font-text: 'Playfair Display', serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background: radial-gradient(circle at center, #0a0a16 0%, var(--bg-color) 100%);
             color: var(--text-main);
             font-family: var(--font-text);
             overflow-x: hidden;
@@ -30,10 +31,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: box-shadow 2s ease-in-out;
+            justify-content: center;
+            transition: background 2s ease, box-shadow 2s ease;
         }
 
-        /* === BACKGROUND BINTANG === */
+        /* === BACKGROUND BINTANG MAGIS === */
         .stars {
             position: fixed;
             top: 0;
@@ -52,156 +54,252 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(1.5px 1.5px at 70px 140px, rgba(212, 175, 55, 0.6), rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 120px 50px, #ffffff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 180px 110px, rgba(255,255,255,0.8), rgba(0,0,0,0));
+                radial-gradient(1px 1px at 30px 40px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 100px 180px, rgba(201, 160, 84, 0.7), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 200px 70px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 280px 140px, rgba(255,255,255,0.9), rgba(0,0,0,0));
             background-repeat: repeat;
-            background-size: 250px 250px;
-            animation: twinkle 6s infinite alternate ease-in-out;
+            background-size: 300px 300px;
+            animation: twinkle 8s infinite alternate ease-in-out;
         }
 
         @keyframes twinkle {
-            0% { opacity: 0.4; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.03); }
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.9; transform: scale(1.02); }
         }
 
+        /* === HERO / WELCOME SCREEN === */
         header {
             text-align: center;
-            padding: 15vh 20px 5vh;
-            animation: fadeInDown 1.5s ease-out;
+            padding: 40px 20px;
+            max-width: 700px;
+            animation: fadeInDown 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .logo-sub {
+            font-family: var(--font-title);
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            color: #8a8a9d;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
         h1 {
             font-family: var(--font-title);
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: var(--gold);
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            margin-bottom: 15px;
-            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, #785920 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(201, 160, 84, 0.15);
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            font-weight: 700;
         }
 
         p.subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-style: italic;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            color: #aaa;
-            line-height: 1.6;
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 40px;
         }
 
+        /* === TOMBOL MEWAH === */
         .btn {
             background: transparent;
-            color: var(--gold);
+            color: var(--gold-light);
             font-family: var(--font-title);
             border: 1px solid var(--gold);
-            padding: 15px 40px;
-            font-size: 1.1rem;
+            padding: 16px 45px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         }
 
         .btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            color: #000;
+            background: var(--gold);
+            box-shadow: 0 0 25px rgba(201, 160, 84, 0.5);
+            transform: translateY(-2px);
         }
 
-        /* === LAYOUT KUIS (DIPERBAIKI UNTUK TEKS PANJANG) === */
+        /* === WADAH KUIS & HASIL (GLASSMORPHISM) === */
         #quiz-container, #result-container {
             display: none;
             flex-direction: column;
             align-items: center;
+            width: 90%;
+            max-width: 800px;
+            background: rgba(10, 10, 20, 0.55);
+            border: 1px solid rgba(201, 160, 84, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(255,255,255,0.02);
+            animation: fadeIn 1s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+
+        /* Dekorasi Sudut Bingkai Kastil */
+        #quiz-container::before, #quiz-container::after,
+        #result-container::before, #result-container::after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid var(--gold);
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        #quiz-container::before, #result-container::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+        #quiz-container::after, #result-container::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+        /* === VISUAL PROGRESS BAR === */
+        .progress-wrapper {
             width: 100%;
-            max-width: 850px;
-            padding: 30px 20px;
-            animation: fadeIn 0.8s ease-in-out;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 35px;
         }
 
         .progress-bar {
             font-family: var(--font-title);
             color: var(--gold);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .progress-line-bg {
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-line-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #785920, var(--gold-light));
+            box-shadow: 0 0 10px var(--gold);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .question {
             font-family: var(--font-title);
             font-size: 1.8rem;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             text-align: center;
             color: #fff;
-            line-height: 1.4;
-            min-height: 80px;
+            line-height: 1.5;
+            font-weight: 400;
         }
 
-        /* Menggunakan Grid agar rapi di desktop dan mobile */
+        /* === LAYOUT PILIHAN JAWABAN === */
         .options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 16px;
             width: 100%;
         }
 
         .option-btn {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid #2a2a35;
-            color: var(--text-main);
-            padding: 22px 25px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            padding: 22px 28px;
             font-family: var(--font-text);
             font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             text-align: left;
-            line-height: 1.5;
-            border-radius: 4px;
+            line-height: 1.6;
+            border-radius: 6px;
         }
 
         .option-btn:hover {
             border-color: var(--gold);
-            color: var(--gold);
-            background: rgba(5, 5, 8, 0.8);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            color: #fff;
+            background: linear-gradient(90deg, rgba(201, 160, 84, 0.08), rgba(0,0,0,0));
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
 
-        /* === HASIL AKHIR === */
+        /* === TAMPILAN HASIL AKHIR === */
+        .house-image-wrapper {
+            width: 240px;
+            height: 240px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            animation: popIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .house-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .house-crest {
             font-family: var(--font-title);
-            font-size: 4rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: popIn 1s ease;
         }
 
         .house-desc {
             font-size: 1.25rem;
             text-align: center;
-            max-width: 550px;
-            line-height: 1.8;
-            margin-top: 20px;
-            color: #ccc;
+            max-width: 600px;
+            line-height: 1.9;
+            color: #cbd5e1;
+            font-style: italic;
         }
 
-        /* Aura cahaya kamar asrama di akhir kuis */
-        .house-Gryffindor { box-shadow: inset 0 0 200px rgba(116, 0, 1, 0.6); }
-        .house-Slytherin { box-shadow: inset 0 0 200px rgba(26, 71, 42, 0.6); }
-        .house-Ravenclaw { box-shadow: inset 0 0 200px rgba(14, 26, 64, 0.6); }
-        .house-Hufflepuff { box-shadow: inset 0 0 200px rgba(238, 185, 57, 0.3); }
+        /* Aura Kamar Asrama Tergantung Hasil Akhir */
+        .house-Gryffindor { background: radial-gradient(circle at center, #270102 0%, var(--bg-color) 100%); box-shadow: inset 0 0 300px rgba(116, 0, 1, 0.7); }
+        .house-Slytherin { background: radial-gradient(circle at center, #072010 0%, var(--bg-color) 100%); box-shadow: inset 0 0 300px rgba(26, 71, 42, 0.7); }
+        .house-Ravenclaw { background: radial-gradient(circle at center, #050d24 0%, var(--bg-color) 100%); box-shadow: inset 0 0 300px rgba(14, 26, 64, 0.7); }
+        .house-Hufflepuff { background: radial-gradient(circle at center, #2e2307 0%, var(--bg-color) 100%); box-shadow: inset 0 0 300px rgba(238, 185, 57, 0.3); }
 
+        /* === ANIMASI === */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
+            from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
         }
         @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
+            0% { transform: scale(0.7); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsif untuk Layar HP */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .question { font-size: 1.4rem; }
+            .option-btn { font-size: 1rem; padding: 16px 20px; }
+            #quiz-container, #result-container { padding: 35px 20px; }
+            .house-crest { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -210,21 +308,31 @@
     <div class="stars"></div>
 
     <header id="hero">
-        <h1>Dunia Sihir</h1>
-        <p class="subtitle">Penyeleksian lama yang legendaris kini dimulai kembali. Jawablah dengan jujur, karena Topi Seleksi melihat jauh ke dalam jiwamu.</p>
-        <button class="btn" onclick="startQuiz()">Kenakan Topi Seleksi</button>
+        <div class="logo-sub">Welcome to</div>
+        <h1>Hogwarts Institute</h1>
+        <p class="subtitle">Upacara seleksi sakral dimulai kembali. Sifat alami, insting, dan keputusan moralmu akan menentukan di menara asrama mana kamu layak ditempatkan.</p>
+        <button class="btn" onclick="startQuiz()">Ikuti Seleksi</button>
     </header>
 
     <main>
         <div id="quiz-container">
-            <div class="progress-bar" id="progress-text">Pertanyaan 1 dari 15</div>
+            <div class="progress-wrapper">
+                <div class="progress-bar" id="progress-text">Ceremony Progress: 1 / 15</div>
+                <div class="progress-line-bg">
+                    <div class="progress-line-fill" id="progress-fill"></div>
+                </div>
+            </div>
             <h2 class="question" id="question-text">Memuat Pertanyaan...</h2>
             <div class="options" id="options-container"></div>
         </div>
 
         <div id="result-container">
+            <div class="house-image-wrapper">
+                <img id="house-img" src="" alt="Lambang Kehormatan Asrama">
+            </div>
+            <div class="logo-sub" style="margin-bottom: 5px;">Asrama Kamu Adalah</div>
             <h2 class="house-crest" id="house-name">RUMAH</h2>
-            <p class="house-desc" id="house-desc">Deskripsi asrama kamu...</p>
+            <p class="house-desc" id="house-desc">Menganalisis jiwamu...</p>
             <br><br>
             <button class="btn" onclick="location.reload()">Ulangi Penyeleksian</button>
         </div>
@@ -236,8 +344,8 @@
             {
                 text: "Matahari terbit atau terbenam?",
                 options: [
-                    { text: "Fajar yang membawa awal baru.", scores: { Gryffindor: 1, Ravenclaw: 1 } },
-                    { text: "Senja yang menyimpan misteri malam.", scores: { Slytherin: 1, Hufflepuff: 1 } }
+                    { text: "Fajar yang membawa cahaya dan awal baru.", scores: { Gryffindor: 1, Ravenclaw: 1 } },
+                    { text: "Senja yang menyimpan kedamaian dan misteri malam.", scores: { Slytherin: 1, Hufflepuff: 1 } }
                 ]
             },
             {
@@ -366,11 +474,32 @@
             }
         ];
 
+        // === DATA ASRAMA ===
         const houseData = {
-            Gryffindor: { color: "#740001", name: "GRYFFINDOR", desc: "Di sinilah tempat bernaungnya mereka yang berani, berjiwa ksatria, dan memiliki nyali besar. Topi Seleksi melihat api keberanian yang menyala terang di dalam dirimu." },
-            Slytherin: { color: "#1a472a", name: "SLYTHERIN", desc: "Tempat bagi mereka yang cerdik, ambisius, dan penuh tekad untuk mencapai kejayaan. Kamu tahu cara memanfaatkan peluang dan siap memimpin dengan keanggunan yang tajam." },
-            Ravenclaw: { color: "#222f5b", name: "RAVENCLAW", desc: "Rumah bagi kecerdasan, kreativitas, dan rasa ingin tahu yang tak terbatas. Pikiranmu yang tajam dan analitis membuatmu sangat cocok berada di antara para pencari kebenaran." },
-            Hufflepuff: { color: "#f0c75e", name: "HUFFLEPUFF", desc: "Asrama bagi mereka yang tulus, setia, adil, dan pekerja keras. Kamu menghargai persahabatan di atas segalanya dan memiliki hati emas yang bisa diandalkan dalam situasi apa pun." }
+            Gryffindor: { 
+                color: "#ff3e3e", 
+                name: "GRYFFINDOR", 
+                image: "https://images.unsplash.com/photo-1602491453977-18a36d3559fb?w=400&auto=format&fit=crop&q=80", 
+                desc: "Di sinilah tempat bernaungnya mereka yang berani, berjiwa ksatria, dan memiliki nyali besar. Hogwarts Institute bangga menyambut api keberanian yang menyala terang di dalam jiwamu." 
+            },
+            Slytherin: { 
+                color: "#2ecc71", 
+                name: "SLYTHERIN", 
+                image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&auto=format&fit=crop&q=80", 
+                desc: "Tempat bagi mereka yang cerdik, ambisius, dan penuh tekad untuk mencapai kejayaan. Kamu tahu cara memanfaatkan peluang dan siap memimpin dengan keanggunan yang tajam." 
+            },
+            Ravenclaw: { 
+                color: "#3498db", 
+                name: "RAVENCLAW", 
+                image: "https://images.unsplash.com/photo-1551250936-2640ce790111?w=400&auto=format&fit=crop&q=80", 
+                desc: "Rumah bagi kecerdasan, kreativitas, dan rasa ingin tahu yang tak terbatas. Pikiranmu yang tajam dan analitis membuatmu sangat cocok berada di antara para pencari kebenaran di Institut ini." 
+            },
+            Hufflepuff: { 
+                color: "#f1c40f", 
+                name: "HUFFLEPUFF", 
+                image: "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=400&auto=format&fit=crop&q=80", 
+                desc: "Asrama bagi mereka yang tulus, setia, adil, dan pekerja keras. Kamu menghargai persahabatan di atas segalanya dan memiliki hati emas yang bisa diandalkan dalam situasi apa pun." 
+            }
         };
 
         let currentQuestionIndex = 0;
@@ -384,7 +513,12 @@
 
         function showQuestion() {
             const q = questions[currentQuestionIndex];
-            document.getElementById('progress-text').innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${questions.length}`;
+            
+            // Update Visual Progress Bar
+            document.getElementById('progress-text').innerText = `Ceremony Progress: ${currentQuestionIndex + 1} / ${questions.length}`;
+            const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+            document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+
             document.getElementById('question-text').innerText = q.text;
             
             const optionsContainer = document.getElementById('options-container');
@@ -416,23 +550,30 @@
         }
 
         function showResult() {
-            document.getElementById('quiz-container').style.display = 'none';
-            const resultContainer = document.getElementById('result-container');
-            resultContainer.style.display = 'flex';
+            // Penuhi Progress Bar di Akhir
+            document.getElementById('progress-fill').style.width = '100%';
 
-            let winningHouse = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            const house = houseData[winningHouse];
+            setTimeout(() => {
+                document.getElementById('quiz-container').style.display = 'none';
+                const resultContainer = document.getElementById('result-container');
+                resultContainer.style.display = 'flex';
 
-            const houseNameEl = document.getElementById('house-name');
-            houseNameEl.innerText = house.name;
-            houseNameEl.style.color = house.color;
-            
-            if(winningHouse === "Hufflepuff") {
-                 houseNameEl.style.color = "#ecb939"; 
-            }
+                let winningHouse = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+                const house = houseData[winningHouse];
 
-            document.getElementById('house-desc').innerText = house.desc;
-            document.body.classList.add(`house-${winningHouse}`);
+                document.getElementById('house-img').src = house.image;
+
+                const houseNameEl = document.getElementById('house-name');
+                houseNameEl.innerText = house.name;
+                houseNameEl.style.color = house.color;
+                
+                // Efek Glow Border pada Gambar Sesuai Rumah
+                document.querySelector('.house-image-wrapper').style.borderColor = house.color;
+                document.querySelector('.house-image-wrapper').style.boxShadow = `0 0 40px ${house.color}`;
+
+                document.getElementById('house-desc').innerText = house.desc;
+                document.body.className = `house-${winningHouse}`;
+            }, 400);
         }
     </script>
 </body>
