@@ -3,45 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akademi Sihir - Pengalaman Topi Seleksi</title>
-    <!-- Google Fonts untuk nuansa magis -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <title>Dunia Sihir | Pengalaman Interaktif</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-color: #0b0d19;
-            --text-main: #e2e8f0;
-            --gold-primary: #d4af37;
-            --gold-glow: rgba(212, 175, 55, 0.4);
-            --card-bg: rgba(20, 24, 44, 0.75);
-            --border-color: rgba(212, 175, 55, 0.3);
-            
-            /* Warna Asrama */
-            --gryffindor: #ae0001;
-            --ravenclaw: #0e1a40;
-            --hufflepuff: #ecb939;
-            --slytherin: #1a472a;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --bg-color: #050508;
+            --text-main: #e0e0e0;
+            --gold: #d4af37;
+            --font-title: 'Cinzel', serif;
+            --font-text: 'Playfair Display', serif;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Lora', serif;
-            min-height: 100vh;
+            font-family: var(--font-text);
             overflow-x: hidden;
-            position: relative;
-            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 2s ease-in-out;
         }
 
-        /* Latar Belakang Magis */
+        /* === BACKGROUND BINTANG === */
         .stars {
             position: fixed;
             top: 0;
@@ -49,507 +41,399 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
-            background: radial-gradient(circle at center, #1a1f3c 0%, #0b0d19 100%);
+            z-index: -1;
         }
-
-        .star {
+        
+        .stars::after {
+            content: "";
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle var(--duration) infinite ease-in-out;
-            opacity: var(--opacity);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 70px 140px, rgba(212, 175, 55, 0.6), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 120px 50px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 180px 110px, rgba(255,255,255,0.8), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 250px 250px;
+            animation: twinkle 6s infinite alternate ease-in-out;
         }
 
         @keyframes twinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 8px #fff; }
+            0% { opacity: 0.4; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.03); }
         }
 
-        /* Navigasi & Header */
         header {
-            position: relative;
-            z-index: 10;
             text-align: center;
-            padding: 2.5rem 1rem 1rem;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(11, 13, 25, 0.8);
-            backdrop-filter: blur(8px);
+            padding: 15vh 20px 5vh;
+            animation: fadeInDown 1.5s ease-out;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
+        h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
         }
 
-        header h1 {
-            color: var(--gold-primary);
-            font-size: 2.2rem;
-            text-shadow: 0 0 15px var(--gold-glow);
-            margin-bottom: 0.3rem;
-        }
-
-        header p {
-            font-size: 0.95rem;
-            color: #94a3b8;
+        p.subtitle {
+            font-size: 1.1rem;
             font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #aaa;
+            line-height: 1.6;
         }
 
-        /* Container Utama */
-        main {
-            position: relative;
-            z-index: 10;
-            max-width: 800px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .section-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transition: all 0.5s ease;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Tombol Magis */
         .btn {
             background: transparent;
-            color: var(--gold-primary);
-            border: 1px solid var(--gold-primary);
-            padding: 0.8rem 2rem;
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            border-radius: 4px;
+            color: var(--gold);
+            font-family: var(--font-title);
+            border: 1px solid var(--gold);
+            padding: 15px 40px;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            margin-top: 1.5rem;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
-            background: var(--gold-primary);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px var(--gold-glow);
-            transform: translateY(-2px);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
-        /* Kuis Topi Seleksi */
-        .quiz-header {
-            text-align: center;
-            margin-bottom: 2rem;
+        /* === LAYOUT KUIS (DIPERBAIKI UNTUK TEKS PANJANG) === */
+        #quiz-container, #result-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 850px;
+            padding: 30px 20px;
+            animation: fadeIn 0.8s ease-in-out;
         }
 
         .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            margin-top: 1rem;
-            border-radius: 2px;
-            overflow: hidden;
+            font-family: var(--font-title);
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: var(--gold-primary);
-            width: 0%;
-            transition: width 0.4s ease;
-        }
-
-        .question-text {
-            font-size: 1.35rem;
-            margin-bottom: 2rem;
+        .question {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            margin-bottom: 35px;
             text-align: center;
-            color: #f8fafc;
+            color: #fff;
+            line-height: 1.4;
+            min-height: 80px;
         }
 
-        .options-grid {
+        /* Menggunakan Grid agar rapi di desktop dan mobile */
+        .options {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            width: 100%;
         }
 
-        .option-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.2rem;
-            border-radius: 8px;
+        .option-btn {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #2a2a35;
+            color: var(--text-main);
+            padding: 22px 25px;
+            font-family: var(--font-text);
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: left;
+            line-height: 1.5;
+            border-radius: 4px;
         }
 
-        .option-card:hover {
-            border-color: var(--gold-primary);
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateX(5px);
+        .option-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(5, 5, 8, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
         }
 
-        /* Tampilan Hasil */
-        #result-section {
-            text-align: center;
-        }
-
-        .house-badge {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            font-weight: bold;
-            border: 3px solid #fff;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-        }
-
-        .result-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
+        /* === HASIL AKHIR === */
+        .house-crest {
+            font-family: var(--font-title);
+            font-size: 4rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .house-desc {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-        }
-
-        /* Eksplorasi Asrama (Compendium) */
-        .compendium {
-            margin-top: 4rem;
-        }
-
-        .compendium h3 {
+            font-size: 1.25rem;
             text-align: center;
-            font-size: 1.8rem;
-            color: var(--gold-primary);
-            margin-bottom: 1.5rem;
+            max-width: 550px;
+            line-height: 1.8;
+            margin-top: 20px;
+            color: #ccc;
         }
 
-        .house-tabs {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
+        /* Aura cahaya kamar asrama di akhir kuis */
+        .house-Gryffindor { box-shadow: inset 0 0 200px rgba(116, 0, 1, 0.6); }
+        .house-Slytherin { box-shadow: inset 0 0 200px rgba(26, 71, 42, 0.6); }
+        .house-Ravenclaw { box-shadow: inset 0 0 200px rgba(14, 26, 64, 0.6); }
+        .house-Hufflepuff { box-shadow: inset 0 0 200px rgba(238, 185, 57, 0.3); }
 
-        .tab-btn {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
-            padding: 0.8rem 0.5rem;
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            border-color: var(--gold-primary);
-            background: rgba(212, 175, 55, 0.15);
-        }
-
-        .house-detail {
-            background: rgba(0,0,0,0.3);
-            border-left: 4px solid var(--gold-primary);
-            padding: 1.5rem;
-            border-radius: 0 8px 8px 0;
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        @media (max-width: 600px) {
-            .house-tabs { grid-template-columns: repeat(2, 1fr); }
-            header h1 { font-size: 1.6rem; }
-            .section-card { padding: 1.5rem; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <div class="stars" id="stars-container"></div>
+    <div class="stars"></div>
 
-    <header>
-        <h1>Portal Dunia Sihir</h1>
-        <p>Temukan takdir magismu dan jelajahi asrama legendaris</p>
+    <header id="hero">
+        <h1>Dunia Sihir</h1>
+        <p class="subtitle">Penyeleksian lama yang legendaris kini dimulai kembali. Jawablah dengan jujur, karena Topi Seleksi melihat jauh ke dalam jiwamu.</p>
+        <button class="btn" onclick="startQuiz()">Kenakan Topi Seleksi</button>
     </header>
 
     <main>
-        <!-- Intro Section -->
-        <div id="intro-section" class="section-card" style="text-align: center;">
-            <h2 style="color: var(--gold-primary); font-size: 1.8rem; margin-bottom: 1rem;">Upacara Penyeleksian</h2>
-            <p style="margin-bottom: 1.5rem;">
-                Ribuan penyihir telah melangkah melewati aula agung ini. Topi Seleksi membaca pikiran, harapan, serta potensi terdalammu untuk menempatkanmu di rumah yang sejati.
-            </p>
-            <p style="color: #94a3b8; font-size: 0.95rem;">Jawablah setiap pertanyaan berdasarkan insting pertamamu.</p>
-            <button class="btn" onclick="startQuiz()">Mulai Penyeleksian</button>
+        <div id="quiz-container">
+            <div class="progress-bar" id="progress-text">Pertanyaan 1 dari 15</div>
+            <h2 class="question" id="question-text">Memuat Pertanyaan...</h2>
+            <div class="options" id="options-container"></div>
         </div>
 
-        <!-- Quiz Section -->
-        <div id="quiz-section" class="section-card hidden">
-            <div class="quiz-header">
-                <span id="question-counter" style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-primary);">Pertanyaan 1 dari 5</span>
-                <div class="progress-bar">
-                    <div id="progress" class="progress-fill"></div>
-                </div>
-            </div>
-            <div id="question-text" class="question-text"></div>
-            <div id="options-container" class="options-grid"></div>
-        </div>
-
-        <!-- Result Section -->
-        <div id="result-section" class="section-card hidden">
-            <div id="badge" class="house-badge">G</div>
-            <h3 style="color: #94a3b8; font-size: 1rem;">Kamu terpilih masuk ke:</h3>
-            <h2 id="house-name" class="result-title">Gryffindor</h2>
-            <p id="house-description" class="house-desc"></p>
-            <div id="house-traits" style="margin-bottom: 2rem; font-family: 'Cinzel', serif; color: var(--gold-primary);"></div>
-            <button class="btn" onclick="resetQuiz()">Ulangi Penyeleksian</button>
-        </div>
-
-        <!-- Compendium Section -->
-        <div class="compendium section-card">
-            <h3>Arsip Keempat Asrama</h3>
-            <div class="house-tabs">
-                <button class="tab-btn active" onclick="showHouse('gryffindor', this)">Gryffindor</button>
-                <button class="tab-btn" onclick="showHouse('ravenclaw', this)">Ravenclaw</button>
-                <button class="tab-btn" onclick="showHouse('hufflepuff', this)">Hufflepuff</button>
-                <button class="tab-btn" onclick="showHouse('slytherin', this)">Slytherin</button>
-            </div>
-            <div id="compendium-detail" class="house-detail">
-                <!-- Diisi otomatis oleh JS -->
-            </div>
+        <div id="result-container">
+            <h2 class="house-crest" id="house-name">RUMAH</h2>
+            <p class="house-desc" id="house-desc">Deskripsi asrama kamu...</p>
+            <br><br>
+            <button class="btn" onclick="location.reload()">Ulangi Penyeleksian</button>
         </div>
     </main>
 
     <script>
-        // 1. Generate Latar Belakang Bintang
-        const starsContainer = document.getElementById('stars-container');
-        for (let i = 0; i < 75; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.setProperty('--duration', `${2 + Math.random() * 4}s`);
-            star.style.setProperty('--opacity', `${0.2 + Math.random() * 0.8}`);
-            starsContainer.appendChild(star);
-        }
-
-        // 2. Data Pertanyaan Topi Seleksi
+        // === 15 SOAL IMERSIF ALA POTTERMORE ===
         const questions = [
             {
-                q: "Langit sedang berganti warna. Mana yang paling memikat jiwamu?",
+                text: "Matahari terbit atau terbenam?",
                 options: [
-                    { text: "Fajar yang merekah keemasan", house: "gryffindor" },
-                    { text: "Senja berembun yang tenang", house: "hufflepuff" },
-                    { text: "Malam berbintang dengan kelap-kelip perak", house: "ravenclaw" },
-                    { text: "Tengah malam kelam yang rahasia", house: "slytherin" }
+                    { text: "Fajar yang membawa awal baru.", scores: { Gryffindor: 1, Ravenclaw: 1 } },
+                    { text: "Senja yang menyimpan misteri malam.", scores: { Slytherin: 1, Hufflepuff: 1 } }
                 ]
             },
             {
-                q: "Di hadapanmu terdapat empat ramuan misterius. Mana yang ingin kamu minum?",
+                text: "Suara mana yang paling membuat jiwamu merasa tenang?",
                 options: [
-                    { text: "Ramuan keemasan menyala yang memberikan rasa percaya diri dan keberanian.", house: "gryffindor" },
-                    { text: "Cairan perak bergemercik yang memperjelas ingatan dan kejernihan berpikir.", house: "ravenclaw" },
-                    { text: "Ramuan hangat beraroma cokelat dan kayu manis yang menenangkan.", house: "hufflepuff" },
-                    { text: "Cairan zamrud gelap yang menjanjikan kekuatan dan pengaruh besar.", house: "slytherin" }
+                    { text: "Desis api unggun yang berkobar hangat di malam dingin.", scores: { Gryffindor: 2 } },
+                    { text: "Hembusan angin kencang di pucuk menara tinggi.", scores: { Ravenclaw: 2 } },
+                    { text: "Suara teratur tetesan air di dalam gua bawah tanah yang sunyi.", scores: { Slytherin: 2 } },
+                    { text: "Kresek dedaunan kering yang diinjak di tengah hutan lebat.", scores: { Hufflepuff: 2 } }
                 ]
             },
             {
-                q: "Ketika kamu meninggalkan dunia ini kelak, kamu ingin orang lain mengenangmu sebagai sosok yang...",
+                text: "Kamu melihat teman sekelas berbuat curang dalam ujian ramuan penting. Apa tindakanmu?",
                 options: [
-                    { text: "Hebat, tak tertandingi, dan mencapai segalanya.", house: "slytherin" },
-                    { text: "Baik hati, setia, dan selalu bisa diandalkan.", house: "hufflepuff" },
-                    { text: "Pemberani, membela kebenaran, dan berjiwa pahlawan.", house: "gryffindor" },
-                    { text: "Bijaksana, inovatif, dan berpengetahuan luas.", house: "ravenclaw" }
+                    { text: "Menghadapinya langsung setelah ujian selesai tanpa rasa takut.", scores: { Gryffindor: 2 } },
+                    { text: "Melaporkannya diam-diam kepada Profesor karena aturan harus ditegakkan.", scores: { Ravenclaw: 2 } },
+                    { text: "Membiarkannya. Setiap orang menggunakan caranya sendiri untuk bertahan hidup.", scores: { Slytherin: 2 } },
+                    { text: "Mendekatinya nanti untuk membantu belajar agar dia tidak perlu curang lagi.", scores: { Hufflepuff: 2 } }
                 ]
             },
             {
-                q: "Pilih instrumen musik yang bunyinya paling menggugah hatimu:",
+                text: "Empat ramuan misterius diletakkan di depanmu. Mana yang aromanya paling memikatmu?",
                 options: [
-                    { text: "Biola solo yang mengalun dramatis dan penuh misteri.", house: "slytherin" },
-                    { text: "Terompet emas yang bergema gagah berani.", house: "gryffindor" },
-                    { text: "Harpa perak yang lembut dan merangsang pikiran.", house: "ravenclaw" },
-                    { text: "Flute kayu yang ceria dan menghangatkan suasana.", house: "hufflepuff" }
+                    { text: "Aroma laut, kayu bakar yang terbakar, dan embun pagi.", scores: { Gryffindor: 2 } },
+                    { text: "Aroma kertas perkamen baru, tinta murni, dan buku-buku tua.", scores: { Ravenclaw: 2 } },
+                    { text: "Aroma mint, es mentol, dan ramuan langka yang mahal.", scores: { Slytherin: 2 } },
+                    { text: "Aroma roti panggang, tanah basah setelah hujan, dan bunga rumah.", scores: { Hufflepuff: 2 } }
                 ]
             },
             {
-                q: "Sebuah pintu rahasia terbuka di kastil. Ke mana pintu itu membawamu?",
+                text: "Jika diberi kesempatan menjelajahi kastil malam-malam, ke mana kamu akan menyelinap?",
                 options: [
-                    { text: "Ke perpustakaan kuno berisi gulungan sihir yang belum terpecahkan.", house: "ravenclaw" },
-                    { text: "Ke ruang bawah tanah rahasia tempat relik bertenaga tinggi disimpan.", house: "slytherin" },
-                    { text: "Ke puncak menara tertinggi menghadap pegunungan yang menantang.", house: "gryffindor" },
-                    { text: "Ke dapur magis beraroma lezat yang penuh kehangatan.", house: "hufflepuff" }
+                    { text: "Puncak Menara Astronomi untuk melihat batas cakrawala.", scores: { Gryffindor: 2 } },
+                    { text: "Bagian Terlarang di Perpustakaan untuk mencari mantra kuno.", scores: { Ravenclaw: 2 } },
+                    { text: "Ruang bawah tanah rahasia di balik dinding asrama.", scores: { Slytherin: 2 } },
+                    { text: "Dapur kastil yang hangat, tempat para peri rumah bekerja.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Dari hal-hal berikut, apa ketakutan terbesarmu jika kamu gagal di masa depan?",
+                options: [
+                    { text: "Terlihat lemah dan pengecut di hadapan orang yang meremehkanku.", scores: { Gryffindor: 2 } },
+                    { text: "Membuat keputusan fatal karena kurangnya pengetahuan.", scores: { Ravenclaw: 2 } },
+                    { text: "Kehilangan kendali atas nasib dan masa depanku sendiri.", scores: { Slytherin: 2 } },
+                    { text: "Mengecewakan orang-orang yang tulus menyayangi dan memercayaiku.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Makhluk gaib mana yang paling ingin kamu pelajari jalurnya atau kamu jinakkan?",
+                options: [
+                    { text: "Naga yang agung, berbahaya, dan bernapas api.", scores: { Gryffindor: 2 } },
+                    { text: "Sphinx yang suka berbicara menggunakan teka-teki rumit.", scores: { Ravenclaw: 2 } },
+                    { text: "Basilisk yang bergerak dalam bayangan gelap.", scores: { Slytherin: 2 } },
+                    { text: "Hippogriff yang membutuhkan rasa hormat dan kesabaran tinggi.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Sebuah pintu besi kuno terkunci rapat menghalangi jalanmu. Bagaimana caramu lewat?",
+                options: [
+                    { text: "Mencari mantra penghancur atau mendobraknya dengan kekuatan.", scores: { Gryffindor: 2 } },
+                    { text: "Menganalisis simbol tersembunyi di gagang pintu untuk memecahkan kodenya.", scores: { Ravenclaw: 2 } },
+                    { text: "Mencari jalan memutar atau trik khusus untuk mengakalinya.", scores: { Slytherin: 2 } },
+                    { text: "Mengetuknya dengan tenang atau menunggu seseorang membukanya dari dalam.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Jika takdir menuntutmu memilih arah tanpa kompas, jalan mana yang kamu ambil?",
+                options: [
+                    { text: "Jalan ke kanan, yang terlihat terang namun terjal.", scores: { Gryffindor: 1, Hufflepuff: 1 } },
+                    { text: "Jalan ke kiri, yang redup namun tampak menyimpan rahasia.", scores: { Slytherin: 1, Ravenclaw: 1 } }
+                ]
+            },
+            {
+                text: "Benda antik apa yang akan kamu ambil dari meja seorang penyihir tua?",
+                options: [
+                    { text: "Belati perak bertatahkan batu ruby yang memancarkan aura berani.", scores: { Gryffindor: 2 } },
+                    { text: "Teropong bintang kuno yang bisa memetakan rasi planet gaib.", scores: { Ravenclaw: 2 } },
+                    { text: "Cincin batu zamrud hitam yang terasa dingin saat disentuh.", scores: { Slytherin: 2 } },
+                    { text: "Cangkir tanah liat sederhana yang tidak pernah kehabisan air hangat.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Apa yang paling kamu harapkan orang katakan tentang dirimu setelah kamu tiada?",
+                options: [
+                    { text: "\"Kisah-kisah keberaniannya akan terus diceritakan ulang.\"", scores: { Gryffindor: 2 } },
+                    { text: "\"Pikiran dan kebijaksanaannya meninggalkan warisan besar.\"", scores: { Ravenclaw: 2 } },
+                    { text: "\"Dia mencapai kejayaan besar yang ditakuti sekaligus dikagumi.\"", scores: { Slytherin: 2 } },
+                    { text: "\"Dia adalah sosok paling setia dan sahabat terbaik yang pernah ada.\"", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Jenis cuaca apa yang membuat energi sihirmu terasa paling membara?",
+                options: [
+                    { text: "Badai petir yang menggelegar hebat membelah langit.", scores: { Gryffindor: 2 } },
+                    { text: "Malam musim dingin yang sangat dingin, jernih, dan penuh bintang.", scores: { Ravenclaw: 2 } },
+                    { text: "Kabut tebal di pagi buta yang menyelimuti seluruh pandangan.", scores: { Slytherin: 2 } },
+                    { text: "Sore hari yang cerah dengan angin sepoi-sepoi yang hangat.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Seseorang melayangkan tuduhan palsu kepadamu di depan umum. Apa reaksi pertamamu?",
+                options: [
+                    { text: "Marah besar dan langsung menantangnya berdebat saat itu juga.", scores: { Gryffindor: 2 } },
+                    { text: "Menahan diri dan menyusun bukti logis untuk mematahkan argumennya.", scores: { Ravenclaw: 2 } },
+                    { text: "Tetap tenang, lalu mencari tahu siapa dalang di balik penjebakan ini untuk membalasnya.", scores: { Slytherin: 2 } },
+                    { text: "Menjelaskan yang sebenarnya dengan damai, percaya kebenaran akan terungkap.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Empat kotak tersaji di depanmu. Kotak mana yang akan kamu buka?",
+                options: [
+                    { text: "Kotak emas di atas cakar elang yang bertuliskan rahasia keberanian.", scores: { Gryffindor: 2 } },
+                    { text: "Kotak safir biru berkilau yang mengeluarkan suara bisikan lembut.", scores: { Ravenclaw: 2 } },
+                    { text: "Kotak hitam legam dengan ukiran ular perak melingkar.", scores: { Slytherin: 2 } },
+                    { text: "Kotak kayu ek tua polos yang berbau harum seperti hutan.", scores: { Hufflepuff: 2 } }
+                ]
+            },
+            {
+                text: "Saat tersesat di dalam labirin sihir yang terus berubah, apa yang paling kamu andalkan?",
+                options: [
+                    { text: "Insting tajam dan tekad kuat untuk terus melangkah maju.", scores: { Gryffindor: 2 } },
+                    { text: "Ingatan visual dan pengamatan struktur pola dinding labirin.", scores: { Ravenclaw: 2 } },
+                    { text: "Mencari jalan pintas rahasia atau celah di balik mekanisme labirin.", scores: { Slytherin: 2 } },
+                    { text: "Tetap tenang, menghemat energi, dan menandai jalan secara sabar.", scores: { Hufflepuff: 2 } }
                 ]
             }
         ];
 
-        // 3. Data Asrama
         const houseData = {
-            gryffindor: {
-                name: "Gryffindor",
-                color: "#ae0001",
-                bg: "rgba(174, 0, 1, 0.2)",
-                badgeText: "G",
-                traits: "Keberanian • Kehormatan • Tekad Kuat",
-                desc: "Kamu memiliki jiwa yang berani dan tak gentar menghadapi bahaya. Para Gryffindor selalu mendengarkan kata hati dan berdiri paling depan untuk membela hal yang benar.",
-                element: "Api",
-                founder: "Godric Gryffindor"
-            },
-            ravenclaw: {
-                name: "Ravenclaw",
-                color: "#22d3ee",
-                bg: "rgba(14, 26, 64, 0.4)",
-                badgeText: "R",
-                traits: "Kecerdasan • Kreativitas • Kebijaksanaan",
-                desc: "Pikiranmu adalah senjata terkuatmu. Ravenclaw menghargai kecerdasan, rasa ingin tahu yang tinggi, serta pandangan unik dalam melihat teka-teki dunia sihir.",
-                element: "Udara",
-                founder: "Rowena Ravenclaw"
-            },
-            hufflepuff: {
-                name: "Hufflepuff",
-                color: "#ecb939",
-                bg: "rgba(236, 185, 57, 0.15)",
-                badgeText: "H",
-                traits: "Kesetiaan • Kesabaran • Kerja Keras",
-                desc: "Kamu adalah sosok yang tulus, dapat dipercaya, dan menghargai keadilan di atas segalanya. Hufflepuff adalah fondasi persahabatan sejati yang paling kokoh di dunia sihir.",
-                element: "Bumi",
-                founder: "Helga Hufflepuff"
-            },
-            slytherin: {
-                name: "Slytherin",
-                color: "#2e7d32",
-                bg: "rgba(26, 71, 42, 0.3)",
-                badgeText: "S",
-                traits: "Ambisi • Kecerdikan • Kepemimpinan",
-                desc: "Kamu tahu persis apa yang kamu inginkan dan memiliki kecerdikan strategis untuk mencapainya. Slytherin melahirkan pemimpin-pemimpin kuat yang tak terbendung oleh rintangan.",
-                element: "Air",
-                founder: "Salazar Slytherin"
-            }
+            Gryffindor: { color: "#740001", name: "GRYFFINDOR", desc: "Di sinilah tempat bernaungnya mereka yang berani, berjiwa ksatria, dan memiliki nyali besar. Topi Seleksi melihat api keberanian yang menyala terang di dalam dirimu." },
+            Slytherin: { color: "#1a472a", name: "SLYTHERIN", desc: "Tempat bagi mereka yang cerdik, ambisius, dan penuh tekad untuk mencapai kejayaan. Kamu tahu cara memanfaatkan peluang dan siap memimpin dengan keanggunan yang tajam." },
+            Ravenclaw: { color: "#222f5b", name: "RAVENCLAW", desc: "Rumah bagi kecerdasan, kreativitas, dan rasa ingin tahu yang tak terbatas. Pikiranmu yang tajam dan analitis membuatmu sangat cocok berada di antara para pencari kebenaran." },
+            Hufflepuff: { color: "#f0c75e", name: "HUFFLEPUFF", desc: "Asrama bagi mereka yang tulus, setia, adil, dan pekerja keras. Kamu menghargai persahabatan di atas segalanya dan memiliki hati emas yang bisa diandalkan dalam situasi apa pun." }
         };
 
-        // State Kuis
         let currentQuestionIndex = 0;
-        let scores = { gryffindor: 0, ravenclaw: 0, hufflepuff: 0, slytherin: 0 };
+        let scores = { Gryffindor: 0, Slytherin: 0, Ravenclaw: 0, Hufflepuff: 0 };
 
         function startQuiz() {
-            document.getElementById('intro-section').classList.add('hidden');
-            document.getElementById('quiz-section').classList.remove('hidden');
-            renderQuestion();
+            document.getElementById('hero').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'flex';
+            showQuestion();
         }
 
-        function renderQuestion() {
+        function showQuestion() {
             const q = questions[currentQuestionIndex];
-            document.getElementById('question-counter').innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${questions.length}`;
-            document.getElementById('progress').style.width = `${((currentQuestionIndex) / questions.length) * 100}%`;
-            document.getElementById('question-text').innerText = q.q;
-
+            document.getElementById('progress-text').innerText = `Pertanyaan ${currentQuestionIndex + 1} dari ${questions.length}`;
+            document.getElementById('question-text').innerText = q.text;
+            
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
 
             q.options.forEach(opt => {
-                const btn = document.createElement('div');
-                btn.className = 'option-card';
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
                 btn.innerText = opt.text;
-                btn.onclick = () => selectOption(opt.house);
+                btn.onclick = () => selectOption(opt.scores);
                 optionsContainer.appendChild(btn);
             });
         }
 
-        function selectOption(house) {
-            scores[house]++;
+        function selectOption(optionScores) {
+            for (let house in optionScores) {
+                if (scores[house] !== undefined) {
+                    scores[house] += optionScores[house];
+                }
+            }
+
             currentQuestionIndex++;
 
             if (currentQuestionIndex < questions.length) {
-                renderQuestion();
+                showQuestion();
             } else {
                 showResult();
             }
         }
 
         function showResult() {
-            document.getElementById('quiz-section').classList.add('hidden');
-            const resultSection = document.getElementById('result-section');
-            resultSection.classList.remove('hidden');
+            document.getElementById('quiz-container').style.display = 'none';
+            const resultContainer = document.getElementById('result-container');
+            resultContainer.style.display = 'flex';
 
-            // Cari skor tertinggi
-            let winningHouse = 'gryffindor';
-            let maxScore = -1;
-            for (let h in scores) {
-                if (scores[h] > maxScore) {
-                    maxScore = scores[h];
-                    winningHouse = h;
-                }
-            }
+            let winningHouse = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const house = houseData[winningHouse];
 
-            const data = houseData[winningHouse];
-            resultSection.style.borderColor = data.color;
-            resultSection.style.backgroundColor = data.bg;
-
-            const badge = document.getElementById('badge');
-            badge.innerText = data.badgeText;
-            badge.style.backgroundColor = data.color;
-            badge.style.borderColor = "#fff";
-
-            const title = document.getElementById('house-name');
-            title.innerText = data.name;
-            title.style.color = data.color;
-
-            document.getElementById('house-description').innerText = data.desc;
-            document.getElementById('house-traits').innerText = data.traits;
-        }
-
-        function resetQuiz() {
-            currentQuestionIndex = 0;
-            scores = { gryffindor: 0, ravenclaw: 0, hufflepuff: 0, slytherin: 0 };
-            document.getElementById('result-section').classList.add('hidden');
-            document.getElementById('intro-section').classList.remove('hidden');
-        }
-
-        // Tampilkan detail compendium (Default: Gryffindor)
-        function showHouse(houseKey, btnElement) {
-            if (btnElement) {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                btnElement.classList.add('active');
-            }
-
-            const data = houseData[houseKey];
-            const detailContainer = document.getElementById('compendium-detail');
-            detailContainer.style.borderLeftColor = data.color;
+            const houseNameEl = document.getElementById('house-name');
+            houseNameEl.innerText = house.name;
+            houseNameEl.style.color = house.color;
             
-            detailContainer.innerHTML = `
-                <h4 style="font-size: 1.4rem; color: ${data.color}; margin-bottom: 0.5rem;">${data.name}</h4>
-                <p style="font-style: italic; color: #cbd5e1; margin-bottom: 1rem;">"${data.traits}"</p>
-                <p style="margin-bottom: 1rem; font-size: 0.95rem;">${data.desc}</p>
-                <div style="display: flex; gap: 2rem; font-size: 0.85rem; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.8rem;">
-                    <div><strong>Pendiri:</strong> ${data.founder}</div>
-                    <div><strong>Elemen:</strong> ${data.element}</div>
-                </div>
-            `;
-        }
+            if(winningHouse === "Hufflepuff") {
+                 houseNameEl.style.color = "#ecb939"; 
+            }
 
-        // Inisialisasi tampilan pertama ensiklopedia
-        showHouse('gryffindor', null);
+            document.getElementById('house-desc').innerText = house.desc;
+            document.body.classList.add(`house-${winningHouse}`);
+        }
     </script>
 </body>
 </html>
