@@ -22,16 +22,21 @@
             --font-text: 'Playfair Display', serif;
         }
 
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             background: radial-gradient(circle at center, #0a0a16 0%, var(--bg-color) 100%);
             color: var(--text-main);
             font-family: var(--font-text);
-            overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 20px 0;
             transition: background 2s ease, box-shadow 2s ease;
         }
 
@@ -72,11 +77,11 @@
         header {
             text-align: center;
             padding: 40px 20px;
+            width: 90%;
             max-width: 700px;
             animation: fadeInDown 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Bingkai Gambar Utama di Halaman Depan */
         .hero-image-wrapper {
             width: 180px;
             height: 180px;
@@ -113,6 +118,7 @@
             margin-bottom: 20px;
             letter-spacing: 4px;
             font-weight: 700;
+            word-wrap: break-word;
         }
 
         p.subtitle {
@@ -146,7 +152,7 @@
             transform: translateY(-2px);
         }
 
-        /* === WADAH KUIS & HASIL (GLASSMORPHISM) === */
+        /* === WADAH KUIS & HASIL === */
         #quiz-container, #result-container {
             display: none;
             flex-direction: column;
@@ -164,7 +170,6 @@
             position: relative;
         }
 
-        /* Dekorasi Sudut Bingkai Kastil */
         #quiz-container::before, #quiz-container::after,
         #result-container::before, #result-container::after {
             content: "";
@@ -242,6 +247,9 @@
             text-align: left;
             line-height: 1.6;
             border-radius: 6px;
+            width: 100%;
+            white-space: normal;
+            word-wrap: break-word;
         }
 
         .option-btn:hover {
@@ -310,13 +318,60 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Responsif untuk Layar HP */
+        /* =================================================== */
+        /* === PERBAIKAN RESPONSID / KHUSUS LAYAR HP (MOBILE) === */
+        /* =================================================== */
         @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .question { font-size: 1.4rem; }
-            .option-btn { font-size: 1rem; padding: 16px 20px; }
-            #quiz-container, #result-container { padding: 35px 20px; }
-            .house-crest { font-size: 2.5rem; }
+            h1 { 
+                font-size: 2.2rem; 
+                letter-spacing: 2px;
+            }
+            p.subtitle { 
+                font-size: 1rem; 
+                line-height: 1.6;
+                margin-bottom: 30px; 
+            }
+            .question { 
+                font-size: 1.3rem; 
+                margin-bottom: 25px; 
+                line-height: 1.4;
+            }
+            
+            #quiz-container, #result-container { 
+                padding: 30px 16px; 
+                width: 95%; /* Kotak diperlebar agar muat jawaban panjang */
+            }
+            
+            .options {
+                gap: 12px;
+            }
+
+            .option-btn { 
+                font-size: 0.95rem; 
+                padding: 14px 16px; 
+                line-height: 1.5;
+                white-space: normal; /* Memaksa teks turun baris */
+                word-break: break-word;
+            }
+            
+            .option-btn:hover {
+                transform: none; /* Mencegah layar bergeser/glitch di HP saat disentuh */
+                background: rgba(201, 160, 84, 0.15);
+            }
+
+            .house-image-wrapper { 
+                width: 180px; 
+                height: 180px; 
+                margin-bottom: 20px;
+            }
+            .house-crest { 
+                font-size: 2.2rem; 
+                letter-spacing: 2px;
+            }
+            .house-desc { 
+                font-size: 1.05rem; 
+                line-height: 1.7; 
+            }
         }
     </style>
 </head>
@@ -326,7 +381,7 @@
 
     <header id="hero">
         <div class="hero-image-wrapper">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlD9p6Esr1f7ynd8kPOQ2C6-0A8tvxdkvT0rDzreoDkA&s=10" alt="Hogwarts Castle">
+            <img src="https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?w=500&auto=format&fit=crop&q=80" alt="Hogwarts Castle Vibe">
         </div>
         <div class="logo-sub">Welcome to</div>
         <h1>Hogwarts Institute</h1>
@@ -386,7 +441,7 @@
                 ]
             },
             {
-                text: "Empat ramuan misterius diletakkan di depanmu. Mana yang aromanya paling memikatmu?",
+                text: "Empat ramuan misterius diletaksebelahmu. Mana yang aromanya paling memikatmu?",
                 options: [
                     { text: "Aroma laut, kayu bakar yang terbakar, dan embun pagi.", scores: { Gryffindor: 2 } },
                     { text: "Aroma kertas perkamen baru, tinta murni, dan buku-buku tua.", scores: { Ravenclaw: 2 } },
@@ -493,34 +548,29 @@
             }
         ];
 
-        // === DATA ASRAMA ===
         const houseData = {
             Gryffindor: { 
                 color: "#ff3e3e", 
                 name: "GRYFFINDOR", 
-                // === 2a. GANTI GAMBAR GRYFFINDOR DI SINI ===
-                image: "https://www.google.com/imgres?q=gryffindor%20hogwarts&imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fharrypotter%2Fimages%2Fb%2Fb1%2FGryffindor_ClearBG.png%2Frevision%2Flatest%3Fcb%3D20190222162949&imgrefurl=https%3A%2F%2Fharrypotter.fandom.com%2Fwiki%2FGryffindor&docid=BXt4ZY5OdMaGlM&tbnid=dqRLSJHrvKoRrM&vet=12ahUKEwj005Pa176VAxX_7zgGHTOAMxsQnPAOegQIQBAA..i&w=1056&h=1179&hcb=2&ved=2ahUKEwj005Pa176VAxX_7zgGHTOAMxsQnPAOegQIQBAA", 
+                image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=500&auto=format&fit=crop&q=80", 
                 desc: "Di sinilah tempat bernaungnya mereka yang berani, berjiwa ksatria, dan memiliki nyali besar. Hogwarts Institute bangga menyambut api keberanian yang menyala terang di dalam jiwamu." 
             },
             Slytherin: { 
                 color: "#2ecc71", 
                 name: "SLYTHERIN", 
-                // === 2b. GANTI GAMBAR SLYTHERIN DI SINI ===
-                image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&auto=format&fit=crop&q=80", 
+                image: "https://images.unsplash.com/photo-1618826411640-d6df44dd3f7a?w=500&auto=format&fit=crop&q=80", 
                 desc: "Tempat bagi mereka yang cerdik, ambisius, dan penuh tekad untuk mencapai kejayaan. Kamu tahu cara memanfaatkan peluang dan siap memimpin dengan keanggunan yang tajam." 
             },
             Ravenclaw: { 
                 color: "#3498db", 
                 name: "RAVENCLAW", 
-                // === 2c. GANTI GAMBAR RAVENCLAW DI SINI ===
-                image: "https://images.unsplash.com/photo-1551250936-2640ce790111?w=400&auto=format&fit=crop&q=80", 
+                image: "https://images.unsplash.com/photo-1606567595334-d399a55420be?w=500&auto=format&fit=crop&q=80", 
                 desc: "Rumah bagi kecerdasan, kreativitas, dan rasa ingin tahu yang tak terbatas. Pikiranmu yang tajam dan analitis membuatmu sangat cocok berada di antara para pencari kebenaran di Institut ini." 
             },
             Hufflepuff: { 
                 color: "#f1c40f", 
                 name: "HUFFLEPUFF", 
-                // === 2d. GANTI GAMBAR HUFFLEPUFF DI SINI ===
-                image: "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=400&auto=format&fit=crop&q=80", 
+                image: "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=500&auto=format&fit=crop&q=80", 
                 desc: "Asrama bagi mereka yang tulus, setia, adil, dan pekerja keras. Kamu menghargai persahabatan di atas segalanya dan memiliki hati emas yang bisa diandalkan dalam situasi apa pun." 
             }
         };
