@@ -359,7 +359,6 @@
     </main>
 
     <script>
-        // === 15 SOAL IMERSIF ALA POTTERMORE ===
         const questions = [
             {
                 text: "Matahari terbit atau terbenam?",
@@ -499,24 +498,28 @@
             Gryffindor: { 
                 color: "#ff3e3e", 
                 name: "GRYFFINDOR", 
-                image: "https://images.unsplash.com/photo-1602491453977-18a36d3559fb?w=400&auto=format&fit=crop&q=80", 
+                // === 2a. GANTI GAMBAR GRYFFINDOR DI SINI ===
+                image: "https://www.google.com/imgres?q=gryffindor%20hogwarts&imgurl=https%3A%2F%2Fstatic.wikia.nocookie.net%2Fharrypotter%2Fimages%2Fb%2Fb1%2FGryffindor_ClearBG.png%2Frevision%2Flatest%3Fcb%3D20190222162949&imgrefurl=https%3A%2F%2Fharrypotter.fandom.com%2Fwiki%2FGryffindor&docid=BXt4ZY5OdMaGlM&tbnid=dqRLSJHrvKoRrM&vet=12ahUKEwj005Pa176VAxX_7zgGHTOAMxsQnPAOegQIQBAA..i&w=1056&h=1179&hcb=2&ved=2ahUKEwj005Pa176VAxX_7zgGHTOAMxsQnPAOegQIQBAA", 
                 desc: "Di sinilah tempat bernaungnya mereka yang berani, berjiwa ksatria, dan memiliki nyali besar. Hogwarts Institute bangga menyambut api keberanian yang menyala terang di dalam jiwamu." 
             },
             Slytherin: { 
                 color: "#2ecc71", 
                 name: "SLYTHERIN", 
+                // === 2b. GANTI GAMBAR SLYTHERIN DI SINI ===
                 image: "https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400&auto=format&fit=crop&q=80", 
                 desc: "Tempat bagi mereka yang cerdik, ambisius, dan penuh tekad untuk mencapai kejayaan. Kamu tahu cara memanfaatkan peluang dan siap memimpin dengan keanggunan yang tajam." 
             },
             Ravenclaw: { 
                 color: "#3498db", 
                 name: "RAVENCLAW", 
+                // === 2c. GANTI GAMBAR RAVENCLAW DI SINI ===
                 image: "https://images.unsplash.com/photo-1551250936-2640ce790111?w=400&auto=format&fit=crop&q=80", 
                 desc: "Rumah bagi kecerdasan, kreativitas, dan rasa ingin tahu yang tak terbatas. Pikiranmu yang tajam dan analitis membuatmu sangat cocok berada di antara para pencari kebenaran di Institut ini." 
             },
             Hufflepuff: { 
                 color: "#f1c40f", 
                 name: "HUFFLEPUFF", 
+                // === 2d. GANTI GAMBAR HUFFLEPUFF DI SINI ===
                 image: "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=400&auto=format&fit=crop&q=80", 
                 desc: "Asrama bagi mereka yang tulus, setia, adil, dan pekerja keras. Kamu menghargai persahabatan di atas segalanya dan memiliki hati emas yang bisa diandalkan dalam situasi apa pun." 
             }
@@ -534,7 +537,6 @@
         function showQuestion() {
             const q = questions[currentQuestionIndex];
             
-            // Update Visual Progress Bar
             document.getElementById('progress-text').innerText = `Ceremony Progress: ${currentQuestionIndex + 1} / ${questions.length}`;
             const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
             document.getElementById('progress-fill').style.width = `${progressPercent}%`;
@@ -570,7 +572,6 @@
         }
 
         function showResult() {
-            // Penuhi Progress Bar di Akhir
             document.getElementById('progress-fill').style.width = '100%';
 
             setTimeout(() => {
@@ -587,7 +588,6 @@
                 houseNameEl.innerText = house.name;
                 houseNameEl.style.color = house.color;
                 
-                // Efek Glow Border pada Gambar Sesuai Rumah
                 document.querySelector('#result-container .house-image-wrapper').style.borderColor = house.color;
                 document.querySelector('#result-container .house-image-wrapper').style.boxShadow = `0 0 40px ${house.color}`;
 
